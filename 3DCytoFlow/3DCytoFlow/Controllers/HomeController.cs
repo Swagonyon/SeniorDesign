@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+using System.Web.Configuration;
 using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.Storage;
 using _3DCytoFlow.Models;
@@ -13,17 +14,21 @@ namespace _3DCytoFlow.Controllers
         public ActionResult Index()
         {
             //get the storage account
-//            var storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
-//            var storageClient = storageAccount.CreateCloudBlobClient();
-//
-//            //get the user and the container name
-//            var user = GetUser();
-//            var containerName = user.LastName + "-" + user.FirstName + "-" + user.Id;
-//
-//            //get the blobs from the container
-//            var storageContainer = storageClient.GetContainerReference(containerName.ToLower());
-//            var blobsList = new CloudFilesModel(storageContainer.ListBlobs(useFlatBlobListing: true));
-
+            //            var storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
+            //            var storageClient = storageAccount.CreateCloudBlobClient();
+            //
+            //            //get the user and the container name
+            //            var user = GetUser();
+            //            var containerName = user.LastName + "-" + user.FirstName + "-" + user.Id;
+            //
+            //            //get the blobs from the container
+            //            var storageContainer = storageClient.GetContainerReference(containerName.ToLower());
+            //            var blobsList = new CloudFilesModel(storageContainer.ListBlobs(useFlatBlobListing: true));
+           if (Request.Browser.IsMobileDevice)
+            {
+                ViewBag.errorMessage = "Mobile device error";
+                return View("Error");
+            }
             return View();
         }
 
