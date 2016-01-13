@@ -11,9 +11,15 @@
         <!-- /.col-lg-12 -->
     </div>
     @{
+        string errorCheck = "Mobile device error";
         if (string.IsNullOrWhiteSpace(ViewBag.errorMessage))
         {
             <h2 class="text-danger">An error occurred while processing your request.</h2>
+        }
+        else if (string.Equals(ViewBag.errorMessage, errorCheck))
+        {
+            Layout = null;
+            <h2 class="text-danger">This site is not currently available on mobile devices.</h2>
         }
         else
         {
